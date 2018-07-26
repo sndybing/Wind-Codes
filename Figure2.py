@@ -8,8 +8,6 @@ import numpy as np
 from obspy.signal.invsim import evalresp
 debug = True
 
-# Can I work github?
-
 # Import/apply font
 mpl.rc('font',family='serif')
 mpl.rc('font',serif='Times') 
