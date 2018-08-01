@@ -68,9 +68,6 @@ for idx2, sandetime in enumerate(zip(stimes, etimes)):
         resp = resp[1:]
         powerR = 10.*np.log10(power/np.abs(resp)**2)
 	
-	period = 1./freq
-	print(tr.id + ' ' + str(np.mean(powerR[(period>=10.)&(period<=15.)])))
-	
         pernlnm, nlnm = get_nlnm()
         pernhnm, nhnm = get_nhnm()
         
