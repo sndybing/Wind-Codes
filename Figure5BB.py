@@ -33,7 +33,7 @@ for idx2, sandetime in enumerate(zip(stimes, etimes)):
     etime = sandetime[1]
     
     # Reading in LHZ data for each station     
-    for idx, chan in enumerate(['LHZ']):
+    for idx, chan in enumerate(['LH2']):
         st = Stream()
         for netsta in netstas:
             net, sta, loc = netsta.split('_')
@@ -67,8 +67,7 @@ for idx2, sandetime in enumerate(zip(stimes, etimes)):
                                 channel = tr.stats.channel, locid = tr.stats.location, network = tr.stats.network, units = 'ACC')
         resp = resp[1:]
         powerR = 10.*np.log10(power/np.abs(resp)**2)
-        period = 1./freq
-        print(tr.id + ' ' + str(np.mean(powerR[(period>=10.)&(period<=15.)])))
+				   
         pernlnm, nlnm = get_nlnm()
         pernhnm, nhnm = get_nhnm()
         
@@ -85,12 +84,12 @@ plt.subplots_adjust(hspace = 0)
 ax = plt.subplot(211)
 plt.semilogx(pernlnm, nlnm, 'k', label = 'NLNM/NHNM')
 plt.semilogx(pernhnm, nhnm, 'k')
-plt.xlim(8.,20.)
-plt.ylim(-165.,-130.)
-plt.yticks([-160.,-155.,-150.,-145.,-140.,-135.])
+plt.xlim(3.,500.)
+plt.ylim(-195.,-83.)
+#plt.yticks([-160.,-155.,-150.,-145.,-140.,-135.])
 plt.tick_params(axis = 'y', labelsize = 17)
 plt.tick_params(axis = 'x', which = 'both', bottom = False, labelbottom = False)
-plt.text(8.15, -133., 'Low Wind', fontsize = 22, color = 'black')
+plt.text(3.25, -90., 'Low Wind', fontsize = 22, color = 'black')
 ax.text(-0.03, 1., '(a)', transform=ax.transAxes,
       fontsize=26, fontweight='bold', va='top', ha='right')
 
@@ -98,14 +97,14 @@ ax.text(-0.03, 1., '(a)', transform=ax.transAxes,
 ax2 = plt.subplot(212)
 plt.semilogx(pernlnm, nlnm, 'k', label = 'NLNM/NHNM')
 plt.semilogx(pernhnm, nhnm, 'k')
-plt.xlim(8.,20.)
-plt.ylim(-165.,-130.)
-plt.yticks([-160.,-155.,-150.,-145.,-140.,-135.])
+plt.xlim(3.,500.)
+plt.ylim(-195.,-83.)
+#plt.yticks([-160.,-155.,-150.,-145.,-140.,-135.])
 plt.tick_params(axis = 'x', which = 'both', bottom = True, labelbottom = True, labelsize = 17)
 plt.tick_params(axis = 'y', labelsize = 17)
 plt.xticks([10.,15.])
 plt.xlabel('Period (s)', fontsize = 20)
-plt.text(8.15, -133., 'High Wind', fontsize = 22, color = 'black')
+plt.text(3.25, -90., 'High Wind', fontsize = 22, color = 'black')
 ax2.text(-0.03, 1., '(b)', transform=ax2.transAxes,
       fontsize=26, fontweight='bold', va='top', ha='right')
 
@@ -124,5 +123,5 @@ for legobj in leg.legendHandles:
 plt.subplots_adjust(bottom = 0.14)
 
 # Saving or showing figure
-plt.savefig('8-20s_Incoherence_PSD.jpg', format="JPEG", dpi=400)
+plt.savefig('BB_Incoherence_PSDLH2.jpg', format="JPEG", dpi=400)
 plt.show()
