@@ -67,7 +67,10 @@ for idx2, sandetime in enumerate(zip(stimes, etimes)):
                                 channel = tr.stats.channel, locid = tr.stats.location, network = tr.stats.network, units = 'ACC')
         resp = resp[1:]
         powerR = 10.*np.log10(power/np.abs(resp)**2)
-				   
+		
+        period = 1./freq
+        print(tr.id + ' ' + str(np.mean(powerR[(period>=10.)&(period<=15.)])))
+						   
         pernlnm, nlnm = get_nlnm()
         pernhnm, nhnm = get_nhnm()
         
@@ -85,8 +88,8 @@ ax = plt.subplot(211)
 plt.semilogx(pernlnm, nlnm, 'k', label = 'NLNM/NHNM')
 plt.semilogx(pernhnm, nhnm, 'k')
 plt.xlim(8.,20.)
-plt.ylim(-165.,-130.)
-plt.yticks([-160.,-155.,-150.,-145.,-140.,-135.])
+plt.ylim(-165.,-140.)
+plt.yticks([-160.,-155.,-150.,-145.])
 plt.tick_params(axis = 'y', labelsize = 17)
 plt.tick_params(axis = 'x', which = 'both', bottom = False, labelbottom = False)
 plt.text(8.15, -133., 'Low Wind', fontsize = 22, color = 'black')
@@ -98,8 +101,8 @@ ax2 = plt.subplot(212)
 plt.semilogx(pernlnm, nlnm, 'k', label = 'NLNM/NHNM')
 plt.semilogx(pernhnm, nhnm, 'k')
 plt.xlim(8.,20.)
-plt.ylim(-165.,-130.)
-plt.yticks([-160.,-155.,-150.,-145.,-140.,-135.])
+plt.ylim(-165.,-140.)
+plt.yticks([-160.,-155.,-150.,-145.])
 plt.tick_params(axis = 'x', which = 'both', bottom = True, labelbottom = True, labelsize = 17)
 plt.tick_params(axis = 'y', labelsize = 17)
 plt.xticks([10.,15.])
