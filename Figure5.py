@@ -76,38 +76,67 @@ for idx2, sandetime in enumerate(zip(stimes, etimes)):
         
         # Plotting data on either the low or high wind subplot
         if idx2 == 0:
-            plt.subplot(211)
+            if tr.stats.station == 'ASL8':
+                ASL8_LW_power = powerR
+            if tr.stats.station == 'ASL9':
+                ASL9_LW_power = powerR
+            if tr.stats.station == 'ENG5':
+                ENG5_LW_power = powerR
+            plt.subplot(311)
             plt.semilogx(1./freq, powerR, label = tr.id, color = colors[idx], linewidth = 0.7)     
         else:
-            plt.subplot(212)
+            if tr.stats.station == 'ASL8':
+                ASL8_HW_power = powerR
+            if tr.stats.station == 'ASL9':
+                ASL9_HW_power = powerR
+            if tr.stats.station == 'ENG5':
+                ENG5_HW_power = powerR
+            plt.subplot(312)
             plt.semilogx(1./freq, powerR, label = tr.id, color = colors[idx], linewidth = 0.7)  
+
+posthole_mean_LW = (ASL8_LW_power + ASL9_LW_power)/2.
+posthole_mean_HW = (ASL8_HW_power + ASL9_HW_power)/2.
+
+diffPSD_LW = ENG5_LW_power - posthole_mean_LW
+diffPSD_HW = ENG5_HW_power - posthole_mean_HW
+
+plt.subplot(313)
+plt.semilogx(period, diffPSD_LW, label = 'Low Wind', color = 'gray')
+plt.semilogx(period, diffPSD_HW, label = 'High Wind', color = 'xkcd:aqua')
+
+plt.ylim(-4.,6.)
+plt.yticks([-2.,0.,2.,4.])
+plt.xlim(8., 20.)
+plt.xlabel('Period (s)', fontsize = 20)
+plt.tick_params(axis = 'y', labelsize = 17)
+plt.tick_params(axis = 'x', which = 'both', bottom = True, labelbottom = True, labelsize = 17)
+plt.legend()
 
 # Adjusting appearance of low wind subplot and adding labels
 plt.subplots_adjust(hspace = 0)
-ax = plt.subplot(211)
+ax = plt.subplot(311)
 plt.semilogx(pernlnm, nlnm, 'k', label = 'NLNM/NHNM')
 plt.semilogx(pernhnm, nhnm, 'k')
 plt.xlim(8.,20.)
-plt.ylim(-165.,-140.)
-plt.yticks([-160.,-155.,-150.,-145.])
+plt.ylim(-165.,-135.)
+plt.yticks([-160.,-155.,-150.,-145., -140.])
 plt.tick_params(axis = 'y', labelsize = 17)
 plt.tick_params(axis = 'x', which = 'both', bottom = False, labelbottom = False)
-plt.text(8.15, -133., 'Low Wind', fontsize = 22, color = 'black')
+plt.text(12., -139., 'Low Wind', fontsize = 22, color = 'gray')
 ax.text(-0.03, 1., '(a)', transform=ax.transAxes,
       fontsize=26, fontweight='bold', va='top', ha='right')
 
 # Adjusting appearance of high wind subplot and adding labels
-ax2 = plt.subplot(212)
+ax2 = plt.subplot(312)
 plt.semilogx(pernlnm, nlnm, 'k', label = 'NLNM/NHNM')
 plt.semilogx(pernhnm, nhnm, 'k')
 plt.xlim(8.,20.)
-plt.ylim(-165.,-140.)
-plt.yticks([-160.,-155.,-150.,-145.])
-plt.tick_params(axis = 'x', which = 'both', bottom = True, labelbottom = True, labelsize = 17)
+plt.ylim(-165.,-135.)
+plt.yticks([-160.,-155.,-150.,-145., -140.])
+plt.tick_params(axis = 'x', which = 'both', bottom = False, labelbottom = False, labelsize = 17)
 plt.tick_params(axis = 'y', labelsize = 17)
 plt.xticks([10.,15.])
-plt.xlabel('Period (s)', fontsize = 20)
-plt.text(8.15, -133., 'High Wind', fontsize = 22, color = 'black')
+plt.text(12., -139., 'High Wind', fontsize = 22, color = 'xkcd:aqua')
 ax2.text(-0.03, 1., '(b)', transform=ax2.transAxes,
       fontsize=26, fontweight='bold', va='top', ha='right')
 

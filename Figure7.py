@@ -15,14 +15,14 @@ mpl.rc('font',serif='Times')
 mpl.rc('text', usetex=True)
 
 # Seismic station
-net1 = 'IU'
-sta1 = 'ANMO'
-loc1 = '00'
+net1 = 'GS'
+sta1 = 'ASL9'
+loc1 = '10'
 chan1 = 'LH'
 
 # Weather station
-net2 = 'IU'
-sta2 = 'ANMO'
+net2 = 'XX'
+sta2 = 'FBA1'
 loc2 = '50'
 chan2 = 'LWS'
 
@@ -155,8 +155,8 @@ plt.scatter(ws, LHZ, s = 5, color = 'C1', label = "Wind and Vertical")
 plt.scatter(ws, LHH, s = 5, color = 'C2', label = 'Wind and Horizontal')
 plt.tick_params(axis = 'y', labelsize = 15)
 plt.tick_params(axis = 'x', labelsize = 15)
-plt.plot(ws, function(ws, *poptH), color = 'C2', label = 'Fit: ' + str(round(poptH[0],2)) + ' m/s per nm/s')
-plt.plot(ws, function(ws, *poptZ), color = 'C1', label = 'Fit: ' + str(round(poptZ[0],2)) + ' m/s per nm/s')
+plt.plot(ws, function(ws, *poptH), color = 'C2', label = 'Fit: ' + str(round(poptH[0],2)) + ' nm/s per m/s')
+plt.plot(ws, function(ws, *poptZ), color = 'C1', label = 'Fit: ' + str(round(poptZ[0],2)) + ' nm/s per m/s')
 
 # Labeling and adjusting appearance of second subplot
 plt.ylabel('RMS Seismic Velocity (nm/s)', fontsize = 19)
