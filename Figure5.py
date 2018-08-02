@@ -113,6 +113,7 @@ plt.xlim(8., 20.)
 plt.xlabel('Period (s)', fontsize = 20)
 plt.tick_params(axis = 'y', labelsize = 17)
 plt.tick_params(axis = 'x', which = 'both', bottom = True, labelbottom = True, labelsize = 17)
+plt.text(7.5, 5.3, '(c)', fontsize = 26)
 plt.legend()
 
 # Adjusting appearance of low wind subplot and adding labels
@@ -144,7 +145,8 @@ ax2.text(-0.03, 1., '(b)', transform=ax2.transAxes,
       fontsize=26, fontweight='bold', va='top', ha='right')
 
 # Creating a y-axis label to extend across both subplots
-fig.text(0.04, 0.5, 'Power (dB) (rel. 1 $(m/s/s)^2$ /Hz)', ha = 'center', va = 'center', rotation = 'vertical', fontsize = 20)
+fig.text(0.04, 0.65, 'Power (dB) (rel. 1 $(m/s/s)^2$ /Hz)', ha = 'center', va = 'center', rotation = 'vertical', fontsize = 20)
+fig.text(0.04, 0.25, 'Power Difference (dB)', ha = 'center', va = 'center', rotation = 'vertical', fontsize = 20)
 
 # Creating legend of all traces and plotting centered below the plots
 handles, labels = ax.get_legend_handles_labels()

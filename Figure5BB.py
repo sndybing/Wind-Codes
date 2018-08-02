@@ -33,7 +33,7 @@ for idx2, sandetime in enumerate(zip(stimes, etimes)):
     etime = sandetime[1]
     
     # Reading in LHZ data for each station     
-    for idx, chan in enumerate(['LH2']):
+    for idx, chan in enumerate(['LHZ']):
         st = Stream()
         for netsta in netstas:
             net, sta, loc = netsta.split('_')
@@ -102,7 +102,6 @@ plt.ylim(-195.,-83.)
 #plt.yticks([-160.,-155.,-150.,-145.,-140.,-135.])
 plt.tick_params(axis = 'x', which = 'both', bottom = True, labelbottom = True, labelsize = 17)
 plt.tick_params(axis = 'y', labelsize = 17)
-plt.xticks([10.,15.])
 plt.xlabel('Period (s)', fontsize = 20)
 plt.text(3.25, -90., 'High Wind', fontsize = 22, color = 'black')
 ax2.text(-0.03, 1., '(b)', transform=ax2.transAxes,
@@ -123,5 +122,5 @@ for legobj in leg.legendHandles:
 plt.subplots_adjust(bottom = 0.14)
 
 # Saving or showing figure
-plt.savefig('BB_Incoherence_PSDLH2.jpg', format="JPEG", dpi=400)
+plt.savefig('BB_Incoherence_PSDLHZ.jpg', format="JPEG", dpi=400)
 plt.show()
