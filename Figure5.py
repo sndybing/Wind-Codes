@@ -67,15 +67,13 @@ for idx2, sandetime in enumerate(zip(stimes, etimes)):
                                 channel = tr.stats.channel, locid = tr.stats.location, network = tr.stats.network, units = 'ACC')
         resp = resp[1:]
         powerR = 10.*np.log10(power/np.abs(resp)**2)
-<<<<<<< HEAD
 		
         period = 1./freq
         print(tr.id + ' ' + str(np.mean(powerR[(period>=10.)&(period<=15.)])))
 						   
-=======
         period = 1./freq
         print(tr.id + ' ' + str(np.mean(powerR[(period>=10.)&(period<=15.)])))
->>>>>>> 84c59aa3e95e6c9f61ac20a7d553816906b24b3a
+
         pernlnm, nlnm = get_nlnm()
         pernhnm, nhnm = get_nhnm()
         
