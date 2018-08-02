@@ -104,8 +104,8 @@ diffPSD_LW = ENG5_LW_power - posthole_mean_LW
 diffPSD_HW = ENG5_HW_power - posthole_mean_HW
 
 plt.subplot(313)
-plt.semilogx(period, diffPSD_LW, label = 'Low Wind', color = 'gray')
-plt.semilogx(period, diffPSD_HW, label = 'High Wind', color = 'xkcd:aqua')
+plt.semilogx(period, diffPSD_LW, label = 'Low Wind', color = 'gray', linewidth = 0.7)
+plt.semilogx(period, diffPSD_HW, label = 'High Wind', color = 'xkcd:aqua', linewidth = 0.7)
 
 plt.ylim(-4.,6.)
 plt.yticks([-2.,0.,2.,4.])
